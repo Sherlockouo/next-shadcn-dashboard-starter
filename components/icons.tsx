@@ -1,3 +1,4 @@
+import { FcGoogle } from 'react-icons/fc';
 import {
   AlertTriangle,
   ArrowRight,
@@ -79,6 +80,7 @@ export const Icons = {
       ></path>
     </svg>
   ),
+  google: FcGoogle,
   twitter: Twitter,
   check: Check
 };
