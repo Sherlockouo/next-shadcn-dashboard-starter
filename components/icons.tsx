@@ -30,9 +30,11 @@ import {
   User2Icon,
   UserX2Icon,
   ListTodo,
+  Save,
   X
 } from 'lucide-react';
 
+import { BiMessageRoundedDots } from 'react-icons/bi';
 export type Icon = LucideIcon;
 
 export const Icons = {
@@ -82,5 +84,7 @@ export const Icons = {
   ),
   google: FcGoogle,
   twitter: Twitter,
-  check: Check
+  check: Check,
+  save2: Save,
+  chat: BiMessageRoundedDots
 };

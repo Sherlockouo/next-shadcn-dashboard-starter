@@ -8,7 +8,7 @@ import {
   useEffect,
   ReactNode
 } from 'react';
-import { useRouter } from 'next/router';
+import { usePathname, useRouter } from 'next/navigation';
 
 interface AuthContextProps {
   isAuthenticated: boolean;
@@ -23,13 +23,18 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const token = localStorage.getItem('access_token');
     if (token) {
       setIsAuthenticated(true);
     }
-  }, []);
+
+    if (!pathname.startsWith('/dashboard')) {
+      router.push('/dashboard');
+    }
+  }, [router, pathname]);
 
   const login = () => {
     setIsAuthenticated(true);
