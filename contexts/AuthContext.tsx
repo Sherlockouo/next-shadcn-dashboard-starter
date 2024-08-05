@@ -1,5 +1,4 @@
 'use client';
-// context/AuthContext.tsx
 
 import {
   createContext,
@@ -29,16 +28,14 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     const token = localStorage.getItem('access_token');
     if (token) {
       setIsAuthenticated(true);
-    }
-
-    if (!pathname.startsWith('/dashboard')) {
-      router.push('/dashboard');
+      if (!pathname.startsWith('/dashboard')) {
+        router.push('/dashboard/chat');
+      }
     }
   }, [router, pathname]);
 
   const login = () => {
     setIsAuthenticated(true);
-    localStorage.setItem('access_token', 'example_token');
   };
 
   const logout = () => {

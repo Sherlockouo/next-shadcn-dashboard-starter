@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import UserAuthForm from '@/components/forms/user-auth-form';
-import SignInLoader from '@/components/animation/loader/signin';
 
 export const metadata: Metadata = {
   title: 'Authentication',

@@ -42,13 +42,22 @@ api.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
     if (error.response.status === 401 && !originalRequest._retry) {
+      localStorage.removeItem('access_token');
       originalRequest._retry = true;
       const refreshToken = getRefreshToken();
       if (refreshToken) {
         try {
-          const { data } = await axios.post(`${API_BASE_URL}/refresh`, {
-            refresh_token: refreshToken
-          });
+          const { data } = await axios.post(
+            `${API_BASE_URL}/oauth/token/refresh`,
+            null,
+            {
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${refreshToken}`
+              }
+            }
+          );
+          console.log('Refresh token success', data);
           saveTokens(data.access_token, data.refresh_token);
           api.defaults.headers.common[
             'Authorization'

@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import NextTopLoader from 'nextjs-toploader';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import { CMDK } from '@/components/cmdk/cmdk';
 import { AuthProvider } from '@/contexts/AuthContext';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -24,6 +25,7 @@ export default async function RootLayout({
         <NextTopLoader showSpinner={false} />
         <Toaster />
         <AuthProvider>{children}</AuthProvider>
+        <CMDK />
       </body>
     </html>
   );
